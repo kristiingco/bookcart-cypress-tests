@@ -19,3 +19,5 @@ class LoginPage extends BasePage {
         this.registerButton.click();
     }
 }
+
+export default LoginPage;
