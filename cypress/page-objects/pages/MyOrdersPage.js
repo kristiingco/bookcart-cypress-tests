@@ -1,4 +1,5 @@
 /// <reference types="cypress"/>
+import BasePage from "./BasePage";
 
 class MyOrdersPage extends BasePage {
     static get orderList() {
