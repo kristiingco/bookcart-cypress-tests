@@ -16,4 +16,8 @@ class BookCard {
     static getAddToCart(index) {
         return this.getSpecificCard(index).contains("Add to Cart");
     }
+
+    static wishlistButton(index) {
+        return this.getSpecificCard(index).get(".favourite");
+    }
 }
