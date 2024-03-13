@@ -1,3 +1,5 @@
+/// <reference types = "cypress"/>
+
 class PriceFilter {
     static get priceSlider() {
         return cy.get(".mdc-slider__input");

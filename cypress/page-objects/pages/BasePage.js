@@ -1,3 +1,5 @@
+/// <reference types = "cypress"/>
+
 class BasePage {
     static pause(ms) {
         cy.wait(ms);

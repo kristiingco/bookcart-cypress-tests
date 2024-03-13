@@ -1,3 +1,5 @@
+/// <reference types = "cypress"/>
+
 class Categories {
     static get categoriesList() {
         return cy.get("mat-list-item");

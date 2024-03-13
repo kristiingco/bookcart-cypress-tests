@@ -1,3 +1,5 @@
+/// <reference types = "cypress"/>
+
 import BasePage from "./BasePage";
 
 class LoginPage extends BasePage {

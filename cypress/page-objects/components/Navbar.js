@@ -1,3 +1,5 @@
+/// <reference types = "cypress"/>
+
 class Navbar {
     static get logo() {
         return cy.get(".brand-title");
