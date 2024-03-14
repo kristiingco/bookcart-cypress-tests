@@ -46,6 +46,11 @@ class Navbar {
     static clickLogin() {
         this.loginButton.click({ force: true });
     }
+
+    static clickLogout() {
+        this.userMenu.click();
+        this.logoutButton.click();
+    }
 }
 
 export default Navbar;

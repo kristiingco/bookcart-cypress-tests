@@ -27,6 +27,10 @@ class RegisterPage extends BasePage {
         return cy.contains(gender);
     }
 
+    static get loginButton() {
+        return cy.contains(".mat-mdc-card-header button", "Login");
+    }
+
     static get registerButton() {
         return cy.contains("button", "Register");
     }
@@ -54,6 +58,10 @@ class RegisterPage extends BasePage {
         this.getGender(gender).click();
         cy.wait(5000);
         this.registerButton.click();
+    }
+
+    static clickLogin() {
+        this.loginButton.click();
     }
 }
 

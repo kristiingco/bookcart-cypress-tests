@@ -11,7 +11,7 @@ describe("User Registration and Account Creation", () => {
         LoginPage.clickRegister();
     });
 
-    it.skip("should successfully register an account and login", () => {
+    it("should successfully register an account and login", () => {
         cy.fixture("registerData").then(
             ({ firstName, lastName, username, password, gender }) => {
                 RegisterPage.register(
@@ -28,6 +28,8 @@ describe("User Registration and Account Creation", () => {
             LoginPage.login(username, password);
             Navbar.username.should("contain", username);
         });
+
+        Navbar.clickLogout();
     });
 
     it("should show an error when first name field is empty", () => {
@@ -66,5 +68,10 @@ describe("User Registration and Account Creation", () => {
     it("should show an error when confirm password does not match", () => {
         RegisterPage.getPasswordError("confirmPasswordField");
         RegisterPage.errorText.should("contain", "Password do not match");
+    });
+
+    it("should go to login page after clicking the log in button", () => {
+        RegisterPage.clickLogin();
+        cy.url().should("include", "login");
     });
 });
