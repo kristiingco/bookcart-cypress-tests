@@ -8,4 +8,5 @@ module.exports = defineConfig({
         },
         baseUrl: "https://bookcart.azurewebsites.net/",
     },
+    watchForFileChanges: false,
 });

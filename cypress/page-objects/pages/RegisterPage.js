@@ -4,23 +4,23 @@ import BasePage from "./BasePage";
 
 class RegisterPage extends BasePage {
     static get firstNameField() {
-        return cy.contains("First name");
+        return cy.get("[placeholder='First name']");
     }
 
     static get lastNameField() {
-        return cy.contains("Last name");
+        return cy.get("[placeholder='Last Name']");
     }
 
     static get usernameField() {
-        return cy.contains("User name");
+        return cy.get("[placeholder='User name']");
     }
 
     static get passwordField() {
-        return cy.contains("Password");
+        return cy.get("[placeholder='Password']");
     }
 
     static get confirmPasswordField() {
-        return cy.contains("confirmPassword");
+        return cy.get("[placeholder='Confirm Password']");
     }
 
     static getGender(gender) {
@@ -28,7 +28,7 @@ class RegisterPage extends BasePage {
     }
 
     static get registerButton() {
-        return cy.contains("Register");
+        return cy.contains("button", "Register");
     }
 
     static register(firstName, lastName, username, password, gender) {
@@ -38,6 +38,7 @@ class RegisterPage extends BasePage {
         this.passwordField.type(password);
         this.confirmPasswordField.type(password);
         this.getGender(gender).click();
+        cy.wait(5000);
         this.registerButton.click();
     }
 }

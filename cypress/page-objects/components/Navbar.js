@@ -30,7 +30,9 @@ class Navbar {
     }
 
     static get username() {
-        return cy.get(".mat-mdc-menu-trigger > .mdc-button__label > span");
+        return cy
+            .get(".mat-mdc-menu-trigger > .mdc-button__label > span")
+            .invoke("text");
     }
 
     static get myOrdersButton() {
@@ -39,6 +41,10 @@ class Navbar {
 
     static get logoutButton() {
         return cy.get(".mat-mdc-menu-content > :nth-child(2)");
+    }
+
+    static clickLogin() {
+        this.loginButton.click({ force: true });
     }
 }
 
