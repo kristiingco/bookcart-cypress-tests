@@ -11,7 +11,7 @@ describe("User Registration and Account Creation", () => {
         LoginPage.clickRegister();
     });
 
-    it("should successfully register an account and login", () => {
+    it.only("should successfully register an account and login", () => {
         cy.fixture("registerData").then(
             ({ firstName, lastName, username, password, gender }) => {
                 RegisterPage.register(
@@ -21,13 +21,11 @@ describe("User Registration and Account Creation", () => {
                     password,
                     gender
                 );
+
+                LoginPage.login(username, password);
+                Navbar.username.should("contain", username);
             }
         );
-
-        cy.fixture("loginData").then(({ username, password }) => {
-            LoginPage.login(username, password);
-            Navbar.username.should("contain", username);
-        });
 
         Navbar.clickLogout();
     });
