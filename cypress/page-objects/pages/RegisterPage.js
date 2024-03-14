@@ -31,6 +31,20 @@ class RegisterPage extends BasePage {
         return cy.contains("button", "Register");
     }
 
+    static get errorText() {
+        return cy.get("#mat-mdc-error-0");
+    }
+
+    static getRequiredErrorFromSpecificField(fieldName) {
+        this[fieldName].focus();
+        this[fieldName].blur();
+    }
+
+    static getPasswordError(fieldName) {
+        this[fieldName].type("1");
+        this[fieldName].blur();
+    }
+
     static register(firstName, lastName, username, password, gender) {
         this.firstNameField.type(firstName);
         this.lastNameField.type(lastName);
