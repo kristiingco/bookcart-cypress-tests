@@ -23,7 +23,7 @@ class BookDetailsPage extends BasePage {
         return cy.get("Add to Cart");
     }
 
-    static get addTioWishlistButton() {
+    static get addToWishlistButton() {
         return cy.get("Add to Wishlist");
     }
 }

@@ -23,3 +23,7 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("convertPriceToNumber", (priceString) => {
+    return Number(priceString.slice(1).replace(/,/g, ""));
+});

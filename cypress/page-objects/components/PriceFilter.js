@@ -2,7 +2,11 @@
 
 class PriceFilter {
     static get priceSlider() {
-        return cy.get(".mdc-slider__input");
+        return cy.get("input[type='range']");
+    }
+
+    static get priceSliderThumb() {
+        return cy.get("mat-slider-visual-thumb");
     }
 
     static get minimumPrice() {
@@ -10,7 +14,16 @@ class PriceFilter {
     }
 
     static get maximumPrice() {
-        return cy.get(":nth-child(3) > strong").invoke("text");
+        return cy
+            .get(":nth-child(3) > strong")
+            .invoke("text")
+            .then((text) => cy.convertPriceToNumber(text));
+    }
+
+    static filterPrice() {
+        this.priceSlider.click({ multiple: true, force: true });
+        this.priceSlider.type("{rightArrow}{enter}", { force: true });
+        this.priceSlider.blur();
     }
 }
 

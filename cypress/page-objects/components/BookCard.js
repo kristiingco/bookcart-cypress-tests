@@ -5,12 +5,16 @@ class BookCard {
         return cy.get(".col > .d-flex > div").eq(index);
     }
 
-    static getbookTitle(index) {
-        return this.getSpecificCard(index).get(".card-title");
+    static getBookTitle(index) {
+        return this.getSpecificCard(index).get(".card-title").invoke("text");
     }
 
     static getBookPrice(index) {
-        return this.getSpecificCard(index).get("p").invoke("text");
+        return cy
+            .get("p")
+            .eq(index)
+            .invoke("text")
+            .then((text) => cy.convertPriceToNumber(text));
     }
 
     static getAddToCart(index) {
@@ -21,3 +25,5 @@ class BookCard {
         return this.getSpecificCard(index).get(".favourite");
     }
 }
+
+export default BookCard;

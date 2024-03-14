@@ -12,10 +12,6 @@ class Categories {
     static clickCategory(categoryName) {
         this.getCategory(categoryName).click();
     }
-
-    static isCategoryActive(categoryName) {
-        this.getCategory(categoryName).should("have.class", ".active-category");
-    }
 }
 
 export default Categories;

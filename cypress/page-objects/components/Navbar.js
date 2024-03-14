@@ -6,7 +6,7 @@ class Navbar {
     }
 
     static get searchBar() {
-        return cy.get(".mat-mdc-autocomplete-trigger");
+        return cy.get("[placeholder='Search books or authors'");
     }
 
     static get cartButton() {
@@ -50,6 +50,10 @@ class Navbar {
     static clickLogout() {
         this.userMenu.click();
         this.logoutButton.click();
+    }
+
+    static search(searchTerm) {
+        this.searchBar.type(`${searchTerm}{enter}`);
     }
 }
 
