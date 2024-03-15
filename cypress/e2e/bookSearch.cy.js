@@ -15,7 +15,9 @@ describe("Searching and Filtering Books", () => {
     it("should return books with the search term present in the title", () => {
         Navbar.search("al");
         HomePage.booksList.each((_$el, index) => {
-            BookCard.getBookTitle(index).should("contain", "al");
+            BookCard.getBookTitle(index).then((text) => {
+                expect(text.toLowerCase()).to.contain("al");
+            });
         });
     });
 
@@ -64,7 +66,7 @@ describe("Searching and Filtering Books", () => {
         });
     });
 
-    it.only("should return books with the price range depending on price filter", () => {
+    it("should return books with the price range depending on price filter", () => {
         cy.wait(2000);
         PriceFilter.filterPrice();
         PriceFilter.maximumPrice.then((maximumPrice) => {
