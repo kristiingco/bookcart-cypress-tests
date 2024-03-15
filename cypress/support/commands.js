@@ -25,5 +25,5 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add("convertPriceToNumber", (priceString) => {
-    return Number(priceString.slice(1).replace(/,/g, ""));
+    return Number(priceString.trim().slice(1).replace(/,/g, ""));
 });

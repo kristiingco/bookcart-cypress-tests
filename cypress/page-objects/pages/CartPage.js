@@ -12,9 +12,27 @@ class CartPage extends BasePage {
     }
 
     static getCartProductPrice(index) {
-        return this.getSpecificCartProduct(index)
-            .get(".cdk-column-price")
-            .invoke("text");
+        return cy
+            .get("td.cdk-column-price")
+            .eq(index)
+            .invoke("text")
+            .then((text) => cy.convertPriceToNumber(text));
+    }
+
+    static getCartQuantity(index) {
+        return cy
+            .get("td.cdk-column-quantity div div:nth-child(2)")
+            .eq(index)
+            .invoke("text")
+            .then((text) => Number(text.trim()));
+    }
+
+    static getCartProductTotalPrice(index) {
+        return cy
+            .get("td.cdk-column-total")
+            .eq(index)
+            .invoke("text")
+            .then((text) => cy.convertPriceToNumber(text));
     }
 
     static getCartSubtractQuantityButton(index) {
@@ -30,19 +48,18 @@ class CartPage extends BasePage {
     }
 
     static getCartRemoveProductButton(index) {
-        return this.getSpecificCartProduct(index).get(
-            ".cdk-column-action > button"
-        );
+        return cy.get(".cdk-column-action > button").eq(index);
     }
 
-    static get totalPrice() {
+    static get cartTotal() {
         return cy
             .get("td.cdk-column-action:nth-child(5) > strong")
-            .invoke("text");
+            .invoke("text")
+            .then((text) => cy.convertPriceToNumber(text));
     }
 
     static get checkOutButton() {
-        return cy.contains("Checkout");
+        return cy.contains("CheckOut");
     }
 
     static get clearCartButton() {
@@ -53,6 +70,14 @@ class CartPage extends BasePage {
         return cy.get(
             ".my-4 > .mat-mdc-card > .mat-mdc-card-header > .mat-mdc-card-header-text > .mat-mdc-card-title"
         );
+    }
+
+    static clickClearCart() {
+        this.clearCartButton.click();
+    }
+
+    static clickCheckOut() {
+        this.checkOutButton.click();
     }
 
     static getContinueShoppingButton() {

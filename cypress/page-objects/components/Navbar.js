@@ -52,6 +52,10 @@ class Navbar {
         this.logoutButton.click();
     }
 
+    static clickCart() {
+        this.cartButton.click();
+    }
+
     static search(searchTerm) {
         this.searchBar.type(`${searchTerm}{enter}`);
     }

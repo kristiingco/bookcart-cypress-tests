@@ -1,24 +1,25 @@
 /// <reference types="cypress"/>
 
+import BasePage from "./BasePage";
 class CheckoutPage extends BasePage {
     static get nameField() {
-        return cy.contains("Name");
+        return cy.get("[placeholder='Name']");
     }
 
     static get address1Field() {
-        return cy.contains("Address Line 1");
+        return cy.get("[placeholder='Address Line 1']");
     }
 
     static get address2Field() {
-        return cy.contains("Address Line 2");
+        return cy.get("[placeholder='Address Line 2']");
     }
 
     static get pincodeField() {
-        return cy.contains("Pincode");
+        return cy.get("[placeholder='Pincode']");
     }
 
     static get stateField() {
-        return cy.contains("State");
+        return cy.get("[placeholder='State']");
     }
 
     static get placeOrderButton() {
@@ -38,19 +39,43 @@ class CheckoutPage extends BasePage {
     }
 
     static getOrderItemQuantity(index) {
-        return this.getOrderItem(index).get("td:nth-child(2)").invoke("text");
+        return cy
+            .get("td:nth-child(2)")
+            .eq(index)
+            .invoke("text")
+            .then((text) => Number(text.trim()));
     }
 
     static getOrderItemPrice(index) {
-        return this.getOrderItem(index).get("td:nth-child(3)").invoke("text");
+        return cy
+            .get("td:nth-child(3)")
+            .eq(index)
+            .invoke("text")
+            .then((text) => cy.convertPriceToNumber(text));
     }
 
     static getOrderItemTotalPrice(index) {
-        return this.getOrderItem(index).get("td:nth-child(4)").invoke("text");
+        return cy
+            .get("td:nth-child(4)")
+            .eq(index)
+            .invoke("text")
+            .then((text) => cy.convertPriceToNumber(text));
     }
 
     static get grandTotal() {
-        return cy.get(".table > tr > :nth-child(4)").invoke("text");
+        return cy
+            .get(".table > tr > :nth-child(4)")
+            .invoke("text")
+            .then((text) => cy.convertPriceToNumber(text));
+    }
+
+    static get errorText() {
+        return cy.get("#mat-mdc-error-0");
+    }
+
+    static getRequiredErrorFromSpecificField(fieldName) {
+        this[fieldName].focus();
+        this[fieldName].blur();
     }
 
     static placeOrder(name, address1, address2, pincode, state) {
