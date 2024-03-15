@@ -19,6 +19,15 @@ class LoginPage extends BasePage {
         return cy.contains(".mat-mdc-card-content button", "Login");
     }
 
+    static get errorText() {
+        return cy.get("#mat-mdc-error-0");
+    }
+
+    static getRequiredErrorFromSpecificField(fieldName) {
+        this[fieldName].focus();
+        this[fieldName].blur();
+    }
+
     static clickRegister() {
         this.registerButton.click();
     }
