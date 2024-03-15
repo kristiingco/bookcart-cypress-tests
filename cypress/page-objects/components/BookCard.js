@@ -6,7 +6,7 @@ class BookCard {
     }
 
     static getBookTitle(index) {
-        return this.getSpecificCard(index).get(".card-title").invoke("text");
+        return cy.get(".card-title").eq(index).invoke("text");
     }
 
     static getBookPrice(index) {
@@ -21,8 +21,8 @@ class BookCard {
         return this.getSpecificCard(index).contains("Add to Cart");
     }
 
-    static wishlistButton(index) {
-        return this.getSpecificCard(index).get(".favourite");
+    static getWishlistButton(index) {
+        return cy.get(".favourite").eq(index);
     }
 }
 

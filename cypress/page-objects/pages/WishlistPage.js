@@ -7,22 +7,35 @@ class WishlistPage extends BasePage {
         return cy.get(".mdc-data-table__content > tr");
     }
 
+    static get allWishlistTitles() {
+        return cy.get(".mdc-data-table__content > tr > .cdk-column-title");
+    }
+
     static getSpecificWishlistItem(index) {
         return this.wishlist.eq(index);
     }
 
+    static getWishlistItemTitle(index) {
+        return cy
+            .get(".mat-mdc-row > .cdk-column-title")
+            .eq(index)
+            .invoke("text");
+    }
+
     static getWishlistItemAddToCartButton(index) {
-        return this.getSpecificWishlistItem(index).contains("Add to Cart");
+        return cy.contains("Add to Cart").eq(index);
     }
 
     static getWishlistItemRemoveButton(index) {
-        return this.getSpecificWishlistItem(index).contains(
-            "Remove from Wishlist"
-        );
+        return cy.contains("Remove from Wishlist").eq(index);
     }
 
     static get clearWishlistButton() {
         return cy.contains("Clear Wishlist");
+    }
+
+    static clickClearWishlist() {
+        this.clearWishlistButton.click();
     }
 
     static get emptyWishlistText() {

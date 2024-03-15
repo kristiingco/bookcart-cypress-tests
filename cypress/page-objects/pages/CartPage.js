@@ -7,6 +7,10 @@ class CartPage extends BasePage {
         return cy.get("tbody tr");
     }
 
+    static get allCartProductTitles() {
+        return cy.get(".mat-mdc-row > .cdk-column-title");
+    }
+
     static getSpecificCartProduct(index) {
         return this.cartProducts.eq(index);
     }

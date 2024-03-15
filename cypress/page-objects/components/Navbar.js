@@ -56,6 +56,10 @@ class Navbar {
         this.cartButton.click();
     }
 
+    static clickWishlist() {
+        this.wishListButton.click();
+    }
+
     static search(searchTerm) {
         this.searchBar.type(`${searchTerm}{enter}`);
     }
