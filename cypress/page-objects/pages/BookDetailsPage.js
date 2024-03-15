@@ -20,11 +20,15 @@ class BookDetailsPage extends BasePage {
     }
 
     static get addToCartButton() {
-        return cy.get("Add to Cart");
+        return cy.contains("Add to Cart");
     }
 
     static get addToWishlistButton() {
-        return cy.get("Add to Wishlist");
+        return cy.contains("Add to Wishlist");
+    }
+
+    static get removeFromWishlistButton() {
+        return cy.contains("Remove from Wishlist");
     }
 }
 
