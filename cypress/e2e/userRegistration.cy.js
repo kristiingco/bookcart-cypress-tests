@@ -11,7 +11,7 @@ describe("User Registration and Account Creation", () => {
         LoginPage.clickRegister();
     });
 
-    it.only("should successfully register an account and login", () => {
+    it("should successfully register an account and login", () => {
         cy.fixture("registerData").then(
             ({ firstName, lastName, username, password, gender }) => {
                 RegisterPage.register(
@@ -66,6 +66,12 @@ describe("User Registration and Account Creation", () => {
     it("should show an error when confirm password does not match", () => {
         RegisterPage.getPasswordError("confirmPasswordField");
         RegisterPage.errorText.should("contain", "Password do not match");
+    });
+
+    it("should show an error when username is taken", () => {
+        RegisterPage.usernameField.type("jd14");
+        RegisterPage.registerButton.click();
+        RegisterPage.errorText.should("contain", "User Name is not available");
     });
 
     it("should go to login page after clicking the log in button", () => {
