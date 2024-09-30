@@ -6,7 +6,7 @@ class Navbar {
     }
 
     static get searchBar() {
-        return cy.get("[placeholder='Search books or authors'");
+        return cy.get("[placeholder='Search books or authors']");
     }
 
     static get cartButton() {
